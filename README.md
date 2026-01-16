@@ -23,25 +23,15 @@ Ring 0 is an FPGA (Field-Programmable Gate Array) that sits physically between t
 
     Note to Contributors: This is crude. We need a better PID loop for "Soft Stops" vs "Hard Cuts" to prevent damage to the gearbox. PRs welcome.
 
-RING 1: THE GLASS LOG (Immutable Witness)
+### RING 1: THE GLASS LOG (Immutable Witness)
+**Status:** *In Development*
+**Objective:** Accountability.
+**Schema Definition:** [`/schemas/glass_log_v1.json`](schemas/glass_log_v1.json)
 
-Status: In Development Objective: Accountability.
+The "Glass Log" is a local WORM (Write-Once-Read-Many) drive implementation. Every decision is hashed, signed, and stored.
 
-The "Glass Log" is a local WORM (Write-Once-Read-Many) drive implementation.
-
-    Storage: Local NVMe (partitioned) or SD Card (Hardware Locked).
-
-    Format: JSON-L (Signed).
-
-JSON
-
-{
-  "timestamp": "2026-01-16T14:00:00Z",
-  "actor": "Buster_Unit_01",
-  "ai_intent": "Move forward 2 meters to assist Human A",
-  "ring0_status": "APPROVED",
-  "signature": "RSA-4096-SIGNATURE-STRING"
-}
+* **Storage:** Local NVMe (partitioned) or SD Card (Hardware Locked).
+* **Format:** JSON (See schema file for full structure).
 
 RING 2: THE TWIN (The Steward)
 
