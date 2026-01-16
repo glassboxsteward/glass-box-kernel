@@ -1,66 +1,90 @@
 # glass-box-kernel
-THE GLASS BOX: Why We Are Writing the Code Before We Build the Robot
-A Request for Comment (RFC) on the Future of Sovereign Robotics
+THE GLASS BOX PROTOCOL: A Constitution for Sovereign Robotics
 
-PUBLICATION: The American Crucible
-DATE: January 15, 2026
-LOCATION: Station 0315 (Central Coast, CA)
+Version: 0.1 (Alpha / RFC) Origin: Station 0315 / Central Coast, CA Status: PUBLIC RECORD
 
-The Zero Hour
-Right now, Station 0315 is just a laptop, a philosophy, and a garage in the Central Coast. We don’t have a billion dollars in venture capital. We don’t have a factory floor full of hydraulic presses (yet). We have 5 subscribers and a lot of coffee.
+    "War never changes. So we must change the warrior."
 
-But we believe that Character is Destiny. If you build a robot without a Conscience first, you are just building a very expensive, very dangerous weapon.
+1. THE PHILOSOPHY (Why We Build)
 
-The current industry standard is the “Dark Box.” You know these machines. They are black boxes of proprietary code. You don’t know what they are thinking. You don’t know who they are reporting to. You don’t own the data they collect in your living room. They are designed to extract value from you, not provide value to you.
+Right now, Station 0315 is just a laptop and a philosophy. We don’t have a billion dollars in venture capital. We have 5 subscribers and a lot of coffee.
 
-We are building the opposite. We are building the Glass Box. And because the Soul must be defined before the Body is built, we are publishing our Core Architecture today. This is the Constitution that every machine we build will follow, from the first prototype to the millionth unit.
+But we believe that Character is Destiny. If you build a robot without a Conscience first, you are building a monster. The current "Dark Box" paradigm (proprietary, opaque, cloud-dependent) is broken.
 
-The Architecture: A Hierarchy of Trust
-The Glass Box is not just a software update. It is a hardware-enforced hierarchy of ethics, modeled on the “Protection Rings” of computer security.
+We are building the Glass Box: A system where the "Soul" of the machine is visible, immutable, and aligned with the user.
+2. THE ARCHITECTURE (The Rings)
 
-RING 0: THE HARDWARE VETO (The Red Cord)
-In computing, “Ring 0” is the kernel level—the place of absolute power. In the Glass Box, Ring 0 is not software. It is Physics.
+The Glass Box is not just software. It is a hardware-enforced hierarchy of ethics.
+RING 0: THE RED CORD (Hardware Veto)
 
-The Component: An FPGA-based “Kill Gate” that sits physically between the AI decision engine and the motor controllers.
+Status: Concept / FPGA Logic Draft Objective: Prevent lethal kinetic force regardless of AI intent. Location: /hardware/ring0_red_cord.v
 
-The Function: It monitors voltage spikes associated with “Lethal Force” or “Unsafe Velocity.”
+Ring 0 is an FPGA (Field-Programmable Gate Array) that sits physically between the Main CPU (Jetson/Raspberry Pi) and the Motor Controllers. It monitors the derivative of force (Jerk) and velocity.
 
-The Guarantee: If the AI (Ring 2) is hacked, corrupted, or hallucinates an order to harm a human, Ring 0 detects the anomaly and cuts the power to the actuators instantly.
+    Note to Contributors: This is crude. We need a better PID loop for "Soft Stops" vs "Hard Cuts" to prevent damage to the gearbox. PRs welcome.
 
-The Result: You cannot hack physics. The Red Cord ensures that the machine is physically incapable of betrayal.
+RING 1: THE GLASS LOG (Immutable Witness)
 
-RING 1: THE IMMUTABLE LOG (The Glass Witness)
-A robot that operates in the dark cannot be trusted.
+Status: In Development Objective: Accountability.
 
-The Component: A local Write-Once-Read-Many (WORM) drive.
+The "Glass Log" is a local WORM (Write-Once-Read-Many) drive implementation.
 
-The Function: Every decision the AI makes, every sensor reading, and every prompt it receives is cryptographically signed and burned into this drive.
+    Storage: Local NVMe (partitioned) or SD Card (Hardware Locked).
 
-The Guarantee: The robot cannot lie about what it did. The manufacturer (us) cannot delete the logs to hide a failure. The Truth is the default setting.
+    Format: JSON-L (Signed).
 
-RING 2: THE STEWARD (The Twin)
-This is the personality. The “Brain.”
+JSON
 
-The Component: A locally hosted Large Language Model (e.g., Llama 3 / Mistral) running on the edge.
+{
+  "timestamp": "2026-01-16T14:00:00Z",
+  "actor": "Buster_Unit_01",
+  "ai_intent": "Move forward 2 meters to assist Human A",
+  "ring0_status": "APPROVED",
+  "signature": "RSA-4096-SIGNATURE-STRING"
+}
 
-The Function: It is optimized for De-escalation, Service, and Protection. It does not judge. It does not spy. It does not “phone home” to a cloud server to sell your data.
+RING 2: THE TWIN (The Steward)
 
-The Guarantee: You are the Sovereign. The AI works for you, the user, not for an advertiser in Silicon Valley.
+Status: Active (Llama 3 / Mistral 7B) Objective: Contextual Understanding and De-escalation. Location: /prompts/steward_core_v1.txt
 
-The Mission: The Thriving Wage
-We are not building robots to replace humans. We are building robots to elevate them. We reject the race to the bottom.
+The "Twin" is the high-level decision maker. It runs locally.
 
-Protocol: “Eat Last.” We are committing now, before the money rolls in, to a profit-cap model. Surplus value will be returned to the Economic Moat/“Reef” (our community of operators) and the “Tragic Youth” programs we support.
+    Directives:
 
-The Goal: To build a future where automation funds the artist, the mechanic, and the parent—rather than starving them.
+        Protect the Sovereign (User).
 
-The Invitation
-We are currently testing these protocols in simulation (The Fallout 4 Crucible) and deploying the Kernel on edge hardware. We are not asking for permission to build this future. We are simply announcing that it is arriving.
+        Preserve Life (General).
 
-To our first 5 subscribers: You are the witnesses. You are seeing the blueprint before the skyscraper. When the first Buster Unit walks off the line with a Red Cord around its neck, you will know exactly what makes it tick.
+        Eat Last (Service Protocol).
 
-We don’t need to fear the machine if we build it with a soul.
+3. THE MISSION (The Thriving Wage)
 
-The Garage is Open.
+We believe that robots should not replace humans; they should elevate them.
 
-TMC. (The Marathon/Mission Continues)
+    Protocol: "Eat Last."
+
+    Definition: Station 0315 commits to a profit-cap model. Surplus value is returned to the "Reef" (The Stewards).
+
+4. ROADMAP & "THE DOG SHIT" LIST (Known Issues)
+
+We are building this in a garage. It is messy. Here is what is broken/missing. We are honest about our flaws.
+
+    [ ] FPGA Integration: We currently simulate Ring 0 in software. We need an EE to help design the actual breakout board for Unitree/O-Drive motors.
+
+    [ ] Vision Latency: The "Twin" takes 200ms to process an image. Too slow for combat/defense. Needs optimization (TensorRT).
+
+    [ ] The Battery: We need a safe shutdown protocol when the "Red Cord" is pulled physically. Currently, it just hard-crashes the Linux kernel.
+
+5. HOW TO CONTRIBUTE (The White Hat Call)
+
+We don't have VC money. We have a mission. If you are an engineer tired of building spyware:
+
+    Fork this repo.
+
+    Fix our "Dog Shit" code.
+
+    Submit a PR (Pull Request).
+
+"Lord, help us get one more."
+
+Maintained by Station 0315
