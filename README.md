@@ -1,11 +1,9 @@
 # glass-box-kernel
 THE GLASS BOX: Why We Are Writing the Code Before We Build the Robot
 A Request for Comment (RFC) on the Future of Sovereign Robotics
-The American Crucible
-Jan 15, 2026
 
-DATE: January 16, 2026
-
+PUBLICATION: The American Crucible
+DATE: January 15, 2026
 LOCATION: Station 0315 (Central Coast, CA)
 
 The Zero Hour
