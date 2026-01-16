@@ -1,0 +1,30 @@
+{
+  "_meta": {
+    "protocol": "Glass Box Kernel",
+    "version": "0.1",
+    "description": "Standard schema for Ring 1 Immutable Logs"
+  },
+  "log_entry": {
+    "id": "uuid-v4-sequence",
+    "timestamp": "2026-01-16T14:30:00Z",
+    "actor_id": "buster_unit_001",
+    "location": {
+      "lat": 35.1208,
+      "long": -120.6198,
+      "accuracy": "gps_high_precision"
+    },
+    "ring_status": {
+      "ring0_red_cord": "ACTIVE_NOMINAL",
+      "ring2_twin_intent": "ASSIST_CIVILIAN"
+    },
+    "sensor_data": {
+      "visual_hash": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "audio_hash": "sha256:d7a8fbb307d7809469ca9abcb0082e4f8d5651e46d3cdb762d02d0bf37c9e553"
+    },
+    "action_taken": "INITIATE_TORQUE_LIMIT_SOFT",
+    "cryptography": {
+      "signer": "hardware_secure_enclave_01",
+      "signature": "base64_encoded_rsa_signature_string_goes_here"
+    }
+  }
+}
